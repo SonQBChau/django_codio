@@ -1,0 +1,175 @@
+[
+    {
+        "model": "blog.comment",
+        "pk": 1,
+        "fields": {
+            "creator": 1,
+            "content": "Go to the admin panel by adding /admin to the URL\r\nLog in to the admin panel\r\nRefresh the Django project",
+            "content_type": 7,
+            "object_id": 1,
+            "created_at": "2022-09-16T21:09:48.063Z",
+            "modified_at": "2022-09-16T21:09:48.063Z"
+        }
+    },
+    {
+        "model": "blog.comment",
+        "pk": 2,
+        "fields": {
+            "creator": 1,
+            "content": "wait, is it written in Django?",
+            "content_type": 7,
+            "object_id": 4,
+            "created_at": "2022-09-19T15:29:29.565Z",
+            "modified_at": "2022-09-19T15:29:29.565Z"
+        }
+    },
+    {
+        "model": "blog.tag",
+        "pk": 1,
+        "fields": {
+            "value": "cat"
+        }
+    },
+    {
+        "model": "blog.tag",
+        "pk": 2,
+        "fields": {
+            "value": "dog"
+        }
+    },
+    {
+        "model": "blog.tag",
+        "pk": 3,
+        "fields": {
+            "value": "katsu"
+        }
+    },
+    {
+        "model": "blog.tag",
+        "pk": 4,
+        "fields": {
+            "value": "web"
+        }
+    },
+    {
+        "model": "blog.post",
+        "pk": 1,
+        "fields": {
+            "author": 1,
+            "created_at": "2022-09-15T23:14:05.075Z",
+            "modified_at": "2022-09-15T23:14:05.075Z",
+            "published_at": "2022-09-15T23:12:49Z",
+            "title": "why hide my amazing artistic clawing skills?",
+            "slug": "why-hide-my-amazing-artistic-clawing-skills",
+            "summary": "Soft kitty warm kitty little ball of furr claw your carpet in places everyone can see - why hide my amazing artistic clawing skills? so bleghbleghvomit my furball really tie the room together. Mewl for food at 4am stare at ceiling, but cat snacks head nudges get scared by sudden appearance of cucumber for chase imaginary bugs, and pee on walls it smells like breakfast.",
+            "content": "Soft kitty warm kitty little ball of furr claw your carpet in places everyone can see - why hide my amazing artistic clawing skills? so bleghbleghvomit my furball really tie the room together. Mewl for food at 4am stare at ceiling, but cat snacks head nudges get scared by sudden appearance of cucumber for chase imaginary bugs, and pee on walls it smells like breakfast. Carefully drink from water glass and then spill it everywhere and proceed to lick the puddle bawl under human beds, but run as fast as i can into another room for no reason why can't i catch that stupid red dot. Immediately regret falling into bathtub eat my own ears or meow meow you are my owner so here is a dead rat scamper catch mouse and gave it as a present while happily ignoring when being called, yet poop on floor and watch human clean up. I will be pet i will be pet and then i will hiss hide head under blanket so no one can see, eat an easter feather as if it were a bird then burp victoriously, but tender. Grass smells good pushes butt to face, sniff all the things dead stare with ears cocked stare at guinea pigs. Paw your face to wake you up in the morning cat cat moo moo lick ears lick paws gnaw the corn cob pee in human's bed until he cleans the litter box stretch out on bed.",
+            "tags": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "blog.post",
+        "pk": 2,
+        "fields": {
+            "author": 2,
+            "created_at": "2022-09-15T23:14:52.101Z",
+            "modified_at": "2022-09-15T23:14:52.101Z",
+            "published_at": "2022-09-15T23:14:12Z",
+            "title": "Adorable doggo sub woofer",
+            "slug": "adorable-doggo-sub-woofer",
+            "summary": "Adorable doggo sub woofer very taste wow puggorino ruff what a nice floof heckin angery woofer very jealous pupper aqua doggo, stop it fren long doggo pupperino doggorino smol borking doggo with a long snoot for pats blep.",
+            "content": "Adorable doggo sub woofer very taste wow puggorino ruff what a nice floof heckin angery woofer very jealous pupper aqua doggo, stop it fren long doggo pupperino doggorino smol borking doggo with a long snoot for pats blep. Heckin puggo many pats bork clouds, borkdrive mlem floofs. Heckin good boys and girls puggo borkf h*ck yapper stop it fren long water shoob wrinkler most angery pupper I have ever seen yapper, very jealous pupper h*ck boof such treat many pats heckin angery woofer he made many woofs. I am bekom fat aqua doggo noodle horse floofs pats, big ol most angery pupper I have ever seen borkdrive. Very hand that feed shibe waggy wags most angery pupper I have ever seen doge, pupper wow very biscit blep long water shoob, waggy wags shooberino.",
+            "tags": [
+                2
+            ]
+        }
+    },
+    {
+        "model": "blog.post",
+        "pk": 3,
+        "fields": {
+            "author": 1,
+            "created_at": "2022-09-16T18:50:50.933Z",
+            "modified_at": "2022-09-16T18:50:50.934Z",
+            "published_at": "2022-09-16T18:50:14Z",
+            "title": "patch katsu data model for high-priority fields",
+            "slug": "patch-katsu-data-model-for-high-priority-fields",
+            "summary": "Based on the data coverage spreadsheet, identify high-priority fields - those that exist in more than one cohort - that cannot be ingested into katsu.",
+            "content": "Projects\r\nCanDIG\r\nDIG-873\r\n\r\nDIG-894\r\n\r\npatch katsu data model for high-priority fields\r\n\r\n\r\n\r\nDescription\r\n\r\nBased on the data coverage spreadsheet, identify high-priority fields - those that exist in more than one cohort - that cannot be ingested into katsu. \r\n\r\nDepending on the number of fields, we may want to further prioritize based on user-defined importance. \r\n\r\nThen, patch the katsu data model / ingest to capture the highest-priority fields. This may include adding fields to extra-properties where they do not fit into the current mcode schema. \r\n\r\nThis is the (unprioritized) list of MoH fields that fit the criteria, based on year 1 PM2C and POG cohorts. We have raw data, but cannot ingest into the current katsu model:",
+            "tags": [
+                3
+            ]
+        }
+    },
+    {
+        "model": "blog.post",
+        "pk": 4,
+        "fields": {
+            "author": 2,
+            "created_at": "2022-09-16T18:51:33.156Z",
+            "modified_at": "2022-09-16T18:51:33.156Z",
+            "published_at": "2022-09-16T18:51:07Z",
+            "title": "Refresh the Website",
+            "slug": "refresh-the-website",
+            "summary": "Click on the blue, circular arrows to refresh the website.",
+            "content": "Try creating col and endcol tags that work in the same manner, but\r\ninstead output the opening and closing tags for a Bootstrap column.\r\nNote that the endcol function will output identical markup as the\r\nendrow function.\r\nYou can add as many arguments as you like to the template tag\r\nfunction, and pass in variables from the template using both positional\r\nand named arguments.",
+            "tags": [
+                4
+            ]
+        }
+    },
+    {
+        "model": "blog.post",
+        "pk": 5,
+        "fields": {
+            "author": 1,
+            "created_at": "2022-09-19T15:31:02.500Z",
+            "modified_at": "2022-09-19T15:31:02.500Z",
+            "published_at": "2022-09-19T15:30:22Z",
+            "title": "Configure AWS CLI on an EC2 Instance",
+            "slug": "configure-aws-cli-on-an-ec2-instance",
+            "summary": "Open terminal and type the following curl command. This can be found in AWS Site : curl “https://awscli.amazonaws.com/AWSCLIV2.pkg\" [sudo installer -pkg AWSCLIV2.pkg -target /",
+            "content": "First create a key pair. Key pair consist of a public and private key, that is used to ssh [or connect] to EC2 instance. Use this command and make sure you change “MyKeyPair” to your key pair name: aws ec2 create-key-pair — key-name MyKeyPair — query ‘KeyMaterial’ — output text > MyKeyPair.pem",
+            "tags": [
+                4
+            ]
+        }
+    },
+    {
+        "model": "blango_auth.User",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$ZNeAwmibIulxwoNJYZftp1$PgUg3E3RGKc3XM2qgb0pZdWm/x8LtZGNlRxoT9Ks5s8=",
+            "last_login": "2022-10-03T16:14:42.541Z",
+            "is_superuser": true,
+            "username": "admin",
+            "first_name": "",
+            "last_name": "",
+            "email": "admin@admin.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2022-09-13T23:13:04.755Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "blango_auth.User",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$bcoVlQ8RzklOTqsxTjRlB4$hcTp0AirpI3Rm91zNGoxU++LrOCM2wrpVhyOIoJO8ek=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "user_Bob",
+            "first_name": "Bob",
+            "last_name": "Corn",
+            "email": "bob@corn.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2022-09-13T23:22:55Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]

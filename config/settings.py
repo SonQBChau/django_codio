@@ -44,12 +44,15 @@ class Dev(Configuration):
         "django.contrib.sessions",
         "django.contrib.messages",
         "django.contrib.staticfiles",
+        "debug_toolbar",
+        "blango_auth",
         "blog",
         "crispy_forms",
-        "crispy_bootstrap5"
+        "crispy_bootstrap5",
     ]
 
     MIDDLEWARE = [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
         "django.middleware.security.SecurityMiddleware",
         "django.contrib.sessions.middleware.SessionMiddleware",
         "django.middleware.common.CommonMiddleware",
@@ -57,6 +60,7 @@ class Dev(Configuration):
         "django.contrib.auth.middleware.AuthenticationMiddleware",
         "django.contrib.messages.middleware.MessageMiddleware",
         "django.middleware.clickjacking.XFrameOptionsMiddleware",
+        
     ]
 
     ROOT_URLCONF = "config.urls"
@@ -152,6 +156,21 @@ class Dev(Configuration):
             "level": "DEBUG",
         },
     }
+
+    CACHES = {
+        "default": {
+            # 'BACKEND': 'djpymemcache.backend.PyMemcacheCache',
+            # 'LOCATION': [
+            #     '127.0.0.1:11211',
+            # ],
+            'BACKEND': "django.core.cache.backends.dummy.DummyCache",
+        }
+    }
+    INTERNAL_IPS = [
+        "127.0.0.1",
+    ]
+
+    AUTH_USER_MODEL = "blango_auth.User"
 
 
 class Prod(Dev):
