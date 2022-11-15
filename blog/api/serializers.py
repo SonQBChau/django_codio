@@ -65,5 +65,5 @@ class PostSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError(
                     "slug is required if autogenerate_slug is not set"
                 )
-        del data["autogenerate_slug"]
+            del data["autogenerate_slug"]
         return data
