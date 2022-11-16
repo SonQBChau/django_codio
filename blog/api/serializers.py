@@ -59,11 +59,12 @@ class PostSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         if not data.get("slug"):
-            if data["autogenerate_slug"]:
+            if data.get("autogenerate_slug"):
                 data["slug"] = slugify(data["title"])
+                del data["autogenerate_slug"]
             else:
                 raise serializers.ValidationError(
                     "slug is required if autogenerate_slug is not set"
                 )
-            del data["autogenerate_slug"]
+            
         return data
