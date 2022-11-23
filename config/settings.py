@@ -21,7 +21,6 @@ class Dev(Configuration):
     # Build paths inside the project like this: BASE_DIR / 'subdir'.
     BASE_DIR = Path(__file__).resolve().parent.parent
 
-
     # Quick-start development settings - unsuitable for production
     # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -31,9 +30,7 @@ class Dev(Configuration):
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = values.BooleanValue(True)
 
-    ALLOWED_HOSTS = values.ListValue(
-        ["localhost", "127.0.0.1", "0.0.0.0", ".codio.io"])
-
+    ALLOWED_HOSTS = values.ListValue(["localhost", "127.0.0.1", "0.0.0.0", ".codio.io"])
 
     # Application definition
 
@@ -68,7 +65,6 @@ class Dev(Configuration):
         "django.contrib.auth.middleware.AuthenticationMiddleware",
         "django.contrib.messages.middleware.MessageMiddleware",
         "django.middleware.clickjacking.XFrameOptionsMiddleware",
-        
     ]
 
     ROOT_URLCONF = "config.urls"
@@ -76,7 +72,7 @@ class Dev(Configuration):
     TEMPLATES = [
         {
             "BACKEND": "django.template.backends.django.DjangoTemplates",
-            'DIRS': [BASE_DIR / 'templates'],
+            "DIRS": [BASE_DIR / "templates"],
             "APP_DIRS": True,
             "OPTIONS": {
                 "context_processors": [
@@ -91,7 +87,6 @@ class Dev(Configuration):
 
     WSGI_APPLICATION = "config.wsgi.application"
 
-
     # Database
     # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -103,7 +98,6 @@ class Dev(Configuration):
         ),
     }
 
-
     # Password validation
     # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -111,11 +105,16 @@ class Dev(Configuration):
         {
             "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
         },
-        {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
-        {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
-        {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
+        {
+            "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        },
+        {
+            "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+        },
+        {
+            "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+        },
     ]
-
 
     # Internationalization
     # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -127,7 +126,6 @@ class Dev(Configuration):
     USE_I18N = True
 
     USE_TZ = True
-
 
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -167,11 +165,9 @@ class Dev(Configuration):
 
     CACHES = {
         "default": {
-            # 'BACKEND': 'djpymemcache.backend.PyMemcacheCache',
-            # 'LOCATION': [
-            #     '127.0.0.1:11211',
-            # ],
-            'BACKEND': "django.core.cache.backends.dummy.DummyCache",
+            # "BACKEND": "django.core.cache.backends.dummy.DummyCache",
+            "BACKEND": "django.core.cache.backends.memcached.PyMemcacheCache",
+            "LOCATION": "127.0.0.1:11211",
         }
     }
     INTERNAL_IPS = [
@@ -186,7 +182,7 @@ class Dev(Configuration):
     ACCOUNT_EMAIL_REQUIRED = True
     ACCOUNT_USERNAME_REQUIRED = False
     ACCOUNT_AUTHENTICATION_METHOD = "email"
-    
+
     REST_FRAMEWORK = {
         "DEFAULT_AUTHENTICATION_CLASSES": [
             "rest_framework.authentication.BasicAuthentication",
@@ -196,15 +192,27 @@ class Dev(Configuration):
         "DEFAULT_PERMISSION_CLASSES": [
             "rest_framework.permissions.IsAuthenticatedOrReadOnly"
         ],
+        "DEFAULT_THROTTLE_CLASSES": [
+            "blog.api.throttling.AnonSustainedThrottle",
+            "blog.api.throttling.AnonBurstThrottle",
+            "blog.api.throttling.UserSustainedThrottle",
+            "blog.api.throttling.UserBurstThrottle",
+        ],
+        "DEFAULT_THROTTLE_RATES": {
+            "anon_sustained": "500/day",
+            "anon_burst": "10/minute",
+            "user_sustained": "5000/day",
+            "user_burst": "100/minute",
+        },
     }
-    
+
     SWAGGER_SETTINGS = {
         "SECURITY_DEFINITIONS": {
-        "Token": {"type": "apiKey", "name": "Authorization",
-        "in": "header"},
-        "Basic": {"type": "basic"},
+            "Token": {"type": "apiKey", "name": "Authorization", "in": "header"},
+            "Basic": {"type": "basic"},
         }
     }
+
 
 class Prod(Dev):
     DEBUG = False
