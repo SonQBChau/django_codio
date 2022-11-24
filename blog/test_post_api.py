@@ -58,7 +58,7 @@ class PostApiTestCase(TestCase):
             and then checks that their data matches what we expect.
         """
         resp = self.client.get("/api/v1/posts/")
-        data = resp.json()
+        data = resp.json()["results"]
         self.assertEqual(len(data), 2)
         for post_dict in data:
             post_obj = self.post_lookup[post_dict["id"]]

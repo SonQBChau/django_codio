@@ -39,6 +39,14 @@ class TagViewSet(viewsets.ModelViewSet):
     @action(methods=["get"], detail=True, name="Posts with the Tag")
     def posts(self, request, pk=None):
         tag = self.get_object()
+
+        page = self.paginate_queryset(tag.posts.all())
+        if page is not None:
+            post_serializer = PostSerializer(
+                page, many=True, context={"request": request}
+            )
+            return self.get_paginated_response(post_serializer.data)
+
         post_serializer = PostSerializer(
             tag.posts, many=True, context={"request": request}
         )
@@ -63,7 +71,7 @@ class PostViewSet(viewsets.ModelViewSet):
         - admin/staff users get all Posts.
         - logged-in users get published Posts or those that they’ve authored.
         - anonymous users get published Posts only.
-        
+
         url filtering rules:
         - new: Posts published in the last hour.
         - today: Posts were published today.
@@ -117,6 +125,16 @@ class PostViewSet(viewsets.ModelViewSet):
         if request.user.is_anonymous:
             raise PermissionDenied("You must be logged in to see which Posts are yours")
         posts = self.get_queryset().filter(author=request.user)
+
+        page = self.paginate_queryset(posts)
+
+        # make the paginated response if
+        # self.paginate_queryset(posts) returns non-None (it might sometimes
+        # return an empty list). Otherwise, we fall back to the normal response.
+        if page is not None:
+            serializer = PostSerializer(page, many=True, context={"request": request})
+            return self.get_paginated_response(serializer.data)
+
         serializer = PostSerializer(posts, many=True, context={"request": request})
         return Response(serializer.data)
 
