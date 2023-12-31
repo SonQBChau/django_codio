@@ -7,6 +7,8 @@ from drf_yasg.views import get_schema_view
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 import os
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
+
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -29,16 +31,23 @@ urlpatterns = format_suffix_patterns(urlpatterns)
 urlpatterns += [
     path("auth/", include("rest_framework.urls")),
     path("token-auth/", views.obtain_auth_token),
-    re_path(
-        r"^swagger(?P<format>\.json|\.yaml)$",
-        schema_view.without_ui(cache_timeout=0),
-        name="schema-json",
-    ),
-    path(
-        "swagger/",
-        schema_view.with_ui("swagger", cache_timeout=0),
-        name="schema-swagger-ui",
-    ),
+    # re_path(
+    #     r"^swagger(?P<format>\.json|\.yaml)$",
+    #     schema_view.without_ui(cache_timeout=0),
+    #     name="schema-json",
+    # ),
+    # path(
+    #     "swagger/",
+    #     schema_view.with_ui("swagger", cache_timeout=0),
+    #     name="schema-swagger-ui",
+    # ),
+    
+    # YOUR PATTERNS
+    path('schema/', SpectacularAPIView.as_view(), name='schema'),
+    # Optional UI:
+    path('schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+    
     path("", include(router.urls)),
     path(
         "posts/by-time/<str:period_name>/",
