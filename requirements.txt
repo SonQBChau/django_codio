@@ -10,5 +10,5 @@ django-filter==22.1
 djangorestframework==3.14.0
 drf-yasg==1.21.4
 pymemcache==4.0.0
-djangorestframework-simplejwt==5.2.2
+djangorestframework-simplejwt==5.5.1
 django-versatileimagefield==2.2
